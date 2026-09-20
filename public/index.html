@@ -130,6 +130,8 @@ input::placeholder{color:#6b5b3c}
 .sheet{width:min(520px,100%);max-height:100%;overflow:auto;background:var(--leather);border:2px solid var(--rule);box-shadow:inset 0 0 0 2px #191309;padding:20px}
 .sheet h3{margin:0;font-size:24px;color:var(--gold);font-weight:600}
 .sheet .kicker{color:var(--muted);font-size:12px;letter-spacing:.1em;margin:0 0 12px}
+.sheet .desc{color:var(--muted);font-size:14px;font-style:italic;line-height:1.5;margin:-4px 0 4px}
+.sheet .desc:empty{display:none}
 .layer{border:2px solid var(--rule-soft);padding:13px;margin-top:12px;background:#1b150d}
 .layer h4{margin:0 0 5px;font-size:12px;letter-spacing:.12em;color:var(--muted);font-weight:400;font-family:Karla,sans-serif}
 .layer p{margin:0;font-size:16px;line-height:1.5}
@@ -141,6 +143,7 @@ input::placeholder{color:#6b5b3c}
 .ed-grid{display:grid;gap:11px;margin-top:6px}
 .ed-row{border:2px solid var(--rule-soft);padding:11px;background:#1b150d;display:grid;gap:7px}
 .lbl{font-size:11.5px;letter-spacing:.1em;color:var(--muted)}
+.ed-count{letter-spacing:0;color:#6b5b3c}
 .ed-row .num{font-family:Cinzel,sans-serif;color:var(--gold-dim);font-size:15px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .names{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:9px;margin-bottom:14px}
@@ -244,6 +247,8 @@ footer{margin-top:30px;color:#6b5b3c;font-size:12.5px;text-align:center;line-hei
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
     <p class="kicker" id="sheet-kicker">TILE 1</p>
     <h3 id="sheet-title">Task</h3>
+    <p class="desc" id="sheet-desc"></p>
+
     <div class="layer" id="lay1"><h4>Layer 1</h4><p id="lay1-txt"></p></div>
     <div class="layer locked" id="lay2"><h4>Layer 2</h4><p id="lay2-txt"></p></div>
     <div class="row" id="sheet-admin"></div>
@@ -260,31 +265,31 @@ var TEAM_COUNT = 5;
 var DEFAULT_NAMES = ["Chickens","One Clan","Team Three","Team Four","Team Five"];
 
 var DEFAULT_TASKS = [
-  ["Any Barrows unique","Ahrim's robe top or bottom"],
-  ["Kill Vorkath 5 times","Vorkath's head"],
-  ["Any Slayer boss unique","Abyssal whip"],
-  ["Complete a Wintertodt round","Tome of fire (or a page)"],
-  ["Reach 500 Zulrah kills total","Tanzanite or magic fang"],
-  ["Any Chambers of Xeric purple","Twisted bow or kodai insignia"],
-  ["Loot 50 Crystal chests","Dragon full helm"],
-  ["Finish a Theatre of Blood raid","Justiciar piece or Scythe"],
-  ["Any dragon-tier weapon drop","Dragon warhammer"],
-  ["Catch 100 Anglerfish","Big swordfish or big shark"],
-  ["Any clue scroll casket (hard+)","Third age piece or ranger boots"],
-  ["Kill the Corporeal Beast","Elysian, Arcane or Spectral sigil"],
-  ["Complete 10 Gauntlet runs","Blade or bow of the corrupted"],
-  ["Any God Wars Dungeon unique","Armadyl or Bandos hilt"],
-  ["Reach 99 in any skill","Reach 99 in a combat skill"],
-  ["Kill Cerberus 25 times","Primordial, pegasian or eternal crystal"],
-  ["Any Nightmare drop","Inquisitor's piece or Nightmare staff"],
-  ["Complete a Tempoross game","Tackle box or dragon harpoon"],
-  ["Any pet drop","A boss pet under 500 kills"],
-  ["Kill Giant Mole 30 times","Full mole set (claws and slippers)"],
-  ["Any Revenant weapon piece","Viggora, Craw or Thammaron's weapon"],
-  ["Finish 5 Slayer tasks","An entire Slayer helm upgrade"],
-  ["Any Zenyte shard","A fully built Zenyte jewellery piece"],
-  ["Complete a Fight Caves run","Infernal cape"],
-  ["Any Wilderness boss unique","Voidwaker piece or Dragon pickaxe"]
+  ["Any Barrows unique","Ahrim's robe top or bottom","The six brothers guard their crypts beneath Morytania."],
+  ["Kill Vorkath 5 times","Vorkath's head","Zulrah's undead dragon, chained above the Gauntlet's ruins."],
+  ["Any Slayer boss unique","Abyssal whip","A reward from the toughest assignments Slayer masters hand out."],
+  ["Complete a Wintertodt round","Tome of fire (or a page)","Brave the frozen boss north of Great Kourend."],
+  ["Reach 500 Zulrah kills total","Tanzanite or magic fang","The shapeshifting snake demigod of the Zul-Andra isle."],
+  ["Any Chambers of Xeric purple","Twisted bow or kodai insignia","Old School's first ever raid, deep under Mount Quidamortem."],
+  ["Loot 50 Crystal chests","Dragon full helm","Reward chests scattered through Prifddinas' elven ruins."],
+  ["Finish a Theatre of Blood raid","Justiciar piece or Scythe","Verzik Vitur's blood-soaked arena beneath Ver Sinhaza."],
+  ["Any dragon-tier weapon drop","Dragon warhammer","Forged from dragon metal, prized across all of Gielinor."],
+  ["Catch 100 Anglerfish","Big swordfish or big shark","Rare big-game catches from the fishing spots of Great Kourend."],
+  ["Any clue scroll casket (hard+)","Third age piece or ranger boots","Treasure trails scattered across every corner of the map."],
+  ["Kill the Corporeal Beast","Elysian, Arcane or Spectral sigil","A colossal ghostly beast lurking in its private cave."],
+  ["Complete 10 Gauntlet runs","Blade or bow of the corrupted","Gather resources and face the Crystalline Hunllef alone."],
+  ["Any God Wars Dungeon unique","Armadyl or Bandos hilt","Four armies still warring beneath the Trollweiss Mountains."],
+  ["Reach 99 in any skill","Reach 99 in a combat skill","The classic cape-worthy milestone every grinder chases."],
+  ["Kill Cerberus 25 times","Primordial, pegasian or eternal crystal","The three-headed hound guarding the Taverley dungeon."],
+  ["Any Nightmare drop","Inquisitor's piece or Nightmare staff","A slumbering horror woken beneath Slepe's graveyard."],
+  ["Complete a Tempoross game","Tackle box or dragon harpoon","Calm the raging sea spirit off the coast of Land's End."],
+  ["Any pet drop","A boss pet under 500 kills","Every boss has a small chance of a loyal companion."],
+  ["Kill Giant Mole 30 times","Full mole set (claws and slippers)","A burrowing menace hiding beneath Falador Park."],
+  ["Any Revenant weapon piece","Viggora, Craw or Thammaron's weapon","Undead raiders haunting the deep Wilderness caves."],
+  ["Finish 5 Slayer tasks","An entire Slayer helm upgrade","Whatever Duradel or your master assigns, no skipping."],
+  ["Any Zenyte shard","A fully built Zenyte jewellery piece","The rarest jewellery cut, dropped only from Elite clues."],
+  ["Complete a Fight Caves run","Infernal cape","TzTok-Jad's gauntlet of waves inside Mor Ul Rek."],
+  ["Any Wilderness boss unique","Voidwaker piece or Dragon pickaxe","High risk, high reward, deep in the Wilderness."]
 ];
 
 var LINES = (function(){
@@ -296,8 +301,8 @@ var LINES = (function(){
 
 /* Offline fallback passwords. With the Cloudflare function installed the real
    check happens on the server and these are ignored. */
-var LOCAL_ADMIN = "OCBingo";
-var LOCAL_EDITOR = "OCBingo";
+var LOCAL_ADMIN = "chickens";
+var LOCAL_EDITOR = "layer2";
 
 var KEY = "clan-bingo-v2";
 var API = "/api/state";
@@ -312,7 +317,7 @@ function blank(){
   return {
     title:"Clan Bingo",
     teams:teams,
-    tasks:DEFAULT_TASKS.map(function(t){return {l1:t[0],l2:t[1]};}),
+    tasks:DEFAULT_TASKS.map(function(t){return {l1:t[0],l2:t[1],desc:t[2]||""};}),
     progress:prog,
     updated:Date.now()
   };
@@ -327,7 +332,7 @@ function fix(s){
       if(s.teams[i]&&s.teams[i].name) b.teams[i]={name:String(s.teams[i].name)};
   if(Array.isArray(s.tasks))
     for(i=0;i<25;i++)
-      if(s.tasks[i]) b.tasks[i]={l1:String(s.tasks[i].l1||""),l2:String(s.tasks[i].l2||"")};
+      if(s.tasks[i]) b.tasks[i]={l1:String(s.tasks[i].l1||""),l2:String(s.tasks[i].l2||""),desc:String(s.tasks[i].desc||"").slice(0,100)};
   if(Array.isArray(s.progress))
     for(t=0;t<TEAM_COUNT;t++)
       if(Array.isArray(s.progress[t]))
@@ -456,6 +461,7 @@ function openSheet(i){
   var task=state.tasks[i], v=state.progress[team][i];
   $("sheet-kicker").textContent="TILE "+(i+1)+" \u00b7 "+state.teams[team].name;
   $("sheet-title").textContent = v===2?"Cleared":(v===1?"Layer 2 revealed":"Layer 1");
+  $("sheet-desc").textContent=task.desc||"";
   $("lay1-txt").textContent=task.l1||"\u2014";
   $("lay1").className="layer"+(v>=1?" cleared":" active");
   var canSee = v>=1 || isAdmin;
@@ -498,17 +504,28 @@ function buildEditor(){
   for(var k=0;k<25;k++){
     var row=document.createElement("div");
     row.className="ed-row";
-    row.innerHTML='<span class="num">Tile '+(k+1)+'</span><div class="two">'+
+    row.innerHTML='<span class="num">Tile '+(k+1)+'</span>'+
+      '<div><span class="lbl">Description <small class="ed-count" data-count-for="'+k+'"></small></span>'+
+        '<input type="text" data-k="desc" data-i="'+k+'" maxlength="100" placeholder="A line of flavor text about this task (optional)"></div>'+
+      '<div class="two">'+
       '<div><span class="lbl">Layer 1</span><input type="text" data-k="l1" data-i="'+k+'"></div>'+
       '<div><span class="lbl">Layer 2</span><input type="text" data-k="l2" data-i="'+k+'"></div></div>';
     g.appendChild(row);
     row.querySelector('[data-k="l1"]').value=draft.tasks[k].l1;
     row.querySelector('[data-k="l2"]').value=draft.tasks[k].l2;
+    row.querySelector('[data-k="desc"]').value=draft.tasks[k].desc||"";
+    updateCount(k);
   }
   g.oninput=function(e){
     var el=e.target; if(!el.dataset.k) return;
     draft.tasks[+el.dataset.i][el.dataset.k]=el.value;
+    if(el.dataset.k==="desc") updateCount(+el.dataset.i);
   };
+}
+
+function updateCount(i){
+  var el=$("ed-grid").querySelector('[data-count-for="'+i+'"]');
+  if(el) el.textContent=(draft.tasks[i].desc||"").length+"/100";
 }
 
 function msg(id,text,kind){
