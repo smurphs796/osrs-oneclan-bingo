@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "osrs",
+  "main": "./worker.js",
+  "compatibility_date": "2026-09-20",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  }
+  // After you create your KV namespace (see README), add:
+  // "kv_namespaces": [ { "binding": "BINGO", "id": "PASTE_THE_ID_HERE" } ]
+}
