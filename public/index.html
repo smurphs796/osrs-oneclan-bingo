@@ -6,7 +6,7 @@
 <title>Clan Bingo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Karla:ital,wght@0,400..700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..700&family=Karla:ital,wght@0,400..700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --stone:#15110c;
@@ -38,7 +38,7 @@ body{
   font-family:Karla,"Segoe UI",system-ui,sans-serif;
   font-size:16px;line-height:1.55;min-height:100%;
 }
-h1,h2,h3,.pix,button{font-family:"Pixelify Sans","Karla",system-ui,sans-serif}
+h1,h2,h3,.pix,button{font-family:Cinzel,"Karla",system-ui,sans-serif}
 .wrap{max-width:1040px;margin:0 auto;padding:22px 16px 72px}
 
 .banner{
@@ -65,7 +65,7 @@ h1{margin:0;font-size:clamp(30px,7.5vw,58px);font-weight:700;line-height:1.04;co
 
 .score{display:flex;gap:10px;justify-content:center;margin:14px 0 0;flex-wrap:wrap}
 .stat{border:2px solid var(--rule-soft);background:#1c160e;padding:8px 16px;min-width:126px;text-align:center}
-.stat b{display:block;font-family:"Pixelify Sans",sans-serif;font-size:27px;color:var(--gold);line-height:1.1}
+.stat b{display:block;font-family:Cinzel,sans-serif;font-size:27px;color:var(--gold);line-height:1.1}
 .stat span{font-size:11.5px;letter-spacing:.09em;color:var(--muted)}
 .meter{height:7px;background:#100c07;border:1px solid var(--rule-soft);margin-top:14px;overflow:hidden}
 .meter i{display:block;height:100%;background:var(--accent,var(--gold));width:0;transition:width .35s ease}
@@ -79,11 +79,11 @@ h1{margin:0;font-size:clamp(30px,7.5vw,58px);font-weight:700;line-height:1.04;co
   transition:transform .1s,border-color .12s,background .12s;
 }
 .tile:hover{border-color:var(--rule);transform:translateY(-1px)}
-.tile .n{position:absolute;top:3px;left:5px;font-family:"Pixelify Sans",sans-serif;font-size:11px;color:#6b5b3c}
+.tile .n{position:absolute;top:3px;left:5px;font-family:Cinzel,sans-serif;font-size:12px;font-weight:600;color:#6b5b3c}
 .tile .txt{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;line-clamp:4;overflow:hidden;max-width:100%;word-break:break-word}
 .tile.l1{background:#2b2410;border-color:var(--gold-dim)}
 .tile.l1 .txt{color:var(--gold)}
-.tile.l1::before{content:"LAYER 2";position:absolute;bottom:4px;left:0;right:0;font-family:"Pixelify Sans",sans-serif;font-size:9.5px;letter-spacing:.14em;color:var(--gold-dim)}
+.tile.l1::before{content:"LAYER 2";position:absolute;bottom:4px;left:0;right:0;font-family:Cinzel,sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.14em;color:var(--gold-dim)}
 .tile.l2{background:#1d2c19;border-color:#4b7a3d}
 .tile.l2 .txt{color:#bfe0b0}
 .tile.l2::after{content:"\2714";position:absolute;top:2px;right:6px;color:var(--done);font-size:15px}
@@ -117,12 +117,12 @@ input::placeholder{color:#6b5b3c}
 }
 .stand-row:hover{border-color:var(--rule)}
 .stand-row[aria-current="true"]{border-color:currentColor}
-.stand-row .rank{font-family:"Pixelify Sans",sans-serif;font-size:18px;color:var(--muted)}
+.stand-row .rank{font-family:Cinzel,sans-serif;font-size:18px;color:var(--muted)}
 .stand-row .who{min-width:0}
 .stand-row .nm{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .stand-row .bar{display:block;height:5px;background:#100c07;margin-top:6px;overflow:hidden}
 .stand-row .bar i{display:block;height:100%;background:currentColor;width:0;transition:width .35s ease}
-.stand-row .tally{font-family:"Pixelify Sans",sans-serif;font-size:17px;color:var(--gold);white-space:nowrap}
+.stand-row .tally{font-family:Cinzel,sans-serif;font-size:17px;color:var(--gold);white-space:nowrap}
 .stand-row .tally small{display:block;font-family:Karla,sans-serif;font-size:11px;color:var(--muted);letter-spacing:.06em}
 
 .veil{position:fixed;inset:0;background:rgba(8,6,3,.82);display:none;align-items:center;justify-content:center;padding:18px;z-index:40;padding-top:calc(18px + env(safe-area-inset-top,0px));padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
@@ -141,7 +141,7 @@ input::placeholder{color:#6b5b3c}
 .ed-grid{display:grid;gap:11px;margin-top:6px}
 .ed-row{border:2px solid var(--rule-soft);padding:11px;background:#1b150d;display:grid;gap:7px}
 .lbl{font-size:11.5px;letter-spacing:.1em;color:var(--muted)}
-.ed-row .num{font-family:"Pixelify Sans",sans-serif;color:var(--gold-dim);font-size:15px}
+.ed-row .num{font-family:Cinzel,sans-serif;color:var(--gold-dim);font-size:15px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .names{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:9px;margin-bottom:14px}
 .hidden{display:none !important}
