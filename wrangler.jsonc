@@ -9,5 +9,5 @@
     "run_worker_first": ["/api/*"]
   }
   // After you create your KV namespace (see README), add:
-  // "kv_namespaces": [ { "binding": "BINGO", "id": "PASTE_THE_ID_HERE" } ]
+  // "kv_namespaces": [ { "binding": "BINGO", "id": "b762df4de1f54255a6fea940fc76d1c7" } ]
 }
