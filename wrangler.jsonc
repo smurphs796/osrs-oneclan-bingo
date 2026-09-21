@@ -1,14 +1,14 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "osrs",
-  "main": "./worker.js",
-  "compatibility_date": "2026-09-20",
-  "assets": {
-    "directory": "./public",
-    "binding": "ASSETS",
-    "run_worker_first": ["/api/*"]
-  }
-"kv_namespaces": [ { "binding": "BINGO", "id": "b762df4de1f54255a6fea940fc76d1c7" } ]
-  // After you create your KV namespace (see README), add:
-  // "kv_namespaces": [ { "binding": "BINGO", "id": "b762df4de1f54255a6fea940fc76d1c7" } ]
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "osrs-oneclan-bingo",
+  "main": "src/index.js", // or your main entry point
+  "compatibility_date": "2024-01-01",
+  
+  // KV Namespace binding for remote persistent storage
+  "kv_namespaces": [
+    {
+      "binding": "BINGO_STORE",
+      "id": "b762df4de1f54255a6fea940fc76d1c7"
+    }
+  ]
 }
