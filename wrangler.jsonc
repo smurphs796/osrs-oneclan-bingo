@@ -7,7 +7,7 @@
   // KV Namespace binding for remote persistent storage
   "kv_namespaces": [
     {
-      "binding": "BINGO_STORE",
+      "binding": "osrs-oneclan-bingo",
       "id": "b762df4de1f54255a6fea940fc76d1c7"
     }
   ]
